@@ -1,40 +1,50 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center">How to use params and use them for API calls</h1>
+          
 
-  <div class="hero-image">
- 
+        <div>
+            <label>Hero name:
+              <input #heroName class="form-controll w3-input"/>
+            </label>
+            <!-- (click) passes input value to add() and then clears the input -->
+            <button (click)="add(heroName.value); heroName.value=''" class="btn btn-success btn-lg btn-block">
+              add
+            </button>
+          </div>
+
+
+
+<table class="table">
+    <tr *ngFor="let task of tasks">
+        <td class="text-left">
+            <a (click)="edit(task)">
+                <span *ngIf="!editTask || editTask && editTask.id!==task.id">  
+                    {{task.title}}
+
+                </span>
+                
+
+                <input type="text" *ngIf="editTask && editTask.id===task.id" [(ngModel)]="task.title" (blur)="update()" (keyup.enter)="update()">
+             
+            </a>
+        </td>
+        <td class="text-right">   
+           <button class="btn btn-danger" (click)="delete(task)"> Delete</button>
+            <!-- Add router link to change page -->
+            <button class="btn btn-primary" [routerLink]='["/task" , task.id]' >View</button>
+        </td>
+    </tr>
+</table>
     
-      
-<h1 style="font-size: 30px;text-align: center;top: 9px;color:white;position: relative;"><b>
-  How to use params and use them for API calls ? LARAVEL (2020)</b></h1>
-    
+      </div>
+    </div>
   </div>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    
-    .hero-image {
-      background-image: url("https://www.freecodecamp.org/news/content/images/size/w2000/2020/04/Copy-of-Copy-of-Travel-Photography.png");
-      background-color: #cccccc;
-      height: 600px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-    }
-    
-    .hero-text {
-      text-align: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-    }
-    </style>
+
 
 
